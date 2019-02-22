@@ -1,0 +1,27 @@
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea
+/.idea/
+out
+project/project/
+
+
+#h2o
+h2ologs
+
+# Scala
+target
+*.class
+
+
+.DS_Store
+
+#ansible
+*.retry
+ansible/personal.yaml
+src/main/resources/local-path.conf
+
+#play logs
+logs
