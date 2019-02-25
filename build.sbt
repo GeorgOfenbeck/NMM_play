@@ -4,7 +4,7 @@ import com.typesafe.sbt.packager.SettingsHelper._
 
 
 lazy val commonSettings = Seq(
-  scalaVersion := "2.11.5",
+  scalaVersion := "2.12.6",
   organization := "com.ofenbeck"
 )
 
@@ -25,9 +25,9 @@ lazy val NMM_server = (project in file("server")).settings(commonSettings).setti
   libraryDependencies ++= Seq(
     "com.vmunier" %% "scalajs-scripts" % "1.1.2",
     "org.scalacheck" %% "scalacheck" % "1.13.5",
-    "org.webjars" %% "webjars-play" % "2.7.0",
+    "org.webjars" %% "webjars-play" % "2.6.3",
+    "org.webjars" % "bootstrap" % "3.1.1-2",
     "org.webjars" % "flot" % "0.8.3-1",
-    "org.webjars" % "bootstrap" % "3.3.6",
     "org.jsoup" % "jsoup" % "1.11.3",
     "ch.qos.logback" % "logback-classic" % "1.2.3",
     "com.typesafe.akka" %% "akka-slf4j" % akkaVersion,
@@ -39,7 +39,7 @@ lazy val NMM_server = (project in file("server")).settings(commonSettings).setti
     guice,
     specs2 % Test,
     ws
-  )).enablePlugins(PlayScala, UniversalPlugin, UniversalDeployPlugin)
+  )).enablePlugins(PlayScala, UniversalPlugin, UniversalDeployPlugin, SbtWeb)
 
 
 
@@ -56,12 +56,13 @@ lazy val NMM_client = (project in file("client")).settings(commonSettings).setti
     "org.querki" %%% "jquery-facade" % "1.2",
     "com.typesafe.play" %%% "play-json" % "2.6.10",
     "org.scala-js" %%% "scalajs-java-time" % "0.2.5",
-    "com.lihaoyi" %%% "scalatags" % "0.6.2"
+    "com.lihaoyi" %%% "scalatags" % "0.6.2",
+    "com.ofenbeck" %%% "nmmlogic" % "0.1.1"
   ),
 
   jsDependencies += "org.webjars" % "jquery" % "2.2.1" / "jquery.js" minified "jquery.min.js",
-  updateOptions := updateOptions.value.withLatestSnapshots(false)
-
+  updateOptions := updateOptions.value.withLatestSnapshots(false),
+  //scalaJSUseMainModuleInitializer := true
 ).enablePlugins(ScalaJSPlugin, ScalaJSWeb)
 
 // loads the sint_gui_server project at sbt startup

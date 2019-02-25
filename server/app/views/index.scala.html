@@ -16,6 +16,9 @@
     </head>
 
     <body>
+        <div id="playground">
+            <canvas id="mycanvas" style="display: block"/>
+        </div>
         <div class="wrap">
             <div class="container-fluid">
                 <div>
@@ -50,6 +53,12 @@
         @webJarsUtil.locate("jquery.flot.min.js").script()
         <script type='text/javascript' src='@routes.Assets.at("javascripts/modernizr-3.5.0.js")'></script>
         <script type='text/javascript' src='@routes.Assets.at("javascripts/app.js")' data-url='@webSocketUrl'></script>
+
+        @scalajs.html.scripts("nmm_client", routes.Assets.versioned(_).toString, name => getClass.getResource(s"/public/$name") != null)
+
+        <script>MyApp.main();</script>
+
+
 
     </body>
 
